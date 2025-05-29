@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MensajeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
@@ -72,6 +73,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+        Route::get('/mensaje', [MensajeController::class, 'generarmensajes']);
+
 });
 
 require __DIR__ . '/auth.php';

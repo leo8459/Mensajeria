@@ -349,8 +349,8 @@ return [
             // 'can'  => 'users.index',
             'submenu' => [
                 [
-                    'text' => 'Consulta Correspondencia',
-                    'url' => '',
+                    'text' => 'Mandar Mensajes Urbano',
+                    'url' => 'mensaje',
                     'icon' => 'fas fa-user',
                 ],
             ],
