@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleHasPermissionController;
+use App\Http\Controllers\Ventanilla7Controller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -74,6 +75,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
         Route::get('/mensaje', [MensajeController::class, 'generarmensajes']);
+                Route::get('/ventanilla7', [Ventanilla7Controller::class, 'generarventanilla7']);
+
 
 });
 

@@ -344,7 +344,7 @@ return [
             ],
         ],
         [
-            'text' => 'Consultas Informacion',
+            'text' => 'Mensajeria La Paz',
             'icon' => 'fas fa-users',
             // 'can'  => 'users.index',
             'submenu' => [
@@ -353,6 +353,12 @@ return [
                     'url' => 'mensaje',
                     'icon' => 'fas fa-user',
                 ],
+                 [
+                    'text' => 'Mandar Mensajes Ventanilla 7',
+                    'url' => 'ventanilla7',
+                    'icon' => 'fas fa-user',
+                ],
+                
             ],
         ],
         [
