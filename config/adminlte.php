@@ -358,6 +358,11 @@ return [
                     'url' => 'ventanilla7',
                     'icon' => 'fas fa-user',
                 ],
+                 [
+                    'text' => 'Mandar Mensajes sadsad 7',
+                    'url' => 'whatsapp-bot',
+                    'icon' => 'fas fa-user',
+                ],
                 
             ],
         ],

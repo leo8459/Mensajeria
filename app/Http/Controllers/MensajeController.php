@@ -10,4 +10,12 @@ class MensajeController extends Controller
     {
         return view('mensaje.mensaje');
     }
+    public function generarmensajeswpp ()
+    {
+        return view('mensaje.mensajes-node');
+    }
+    public function generarmensajeswppbot ()
+    {
+        return view('mensaje.whatsapp-bot');
+    }
 }
