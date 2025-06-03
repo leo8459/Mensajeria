@@ -77,6 +77,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/mensaje', [MensajeController::class, 'generarmensajes']);
     Route::get('/ventanilla7', [Ventanilla7Controller::class, 'generarventanilla7']);
         Route::get('/whatsapp-bot', [MensajeController::class, 'generarmensajeswppbot']);
+Route::get('/bot', \App\Livewire\WhatsappBot::class)->name('bot');
 
 });
 
