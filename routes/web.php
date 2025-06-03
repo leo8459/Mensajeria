@@ -76,7 +76,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/mensaje', [MensajeController::class, 'generarmensajes']);
     Route::get('/ventanilla7', [Ventanilla7Controller::class, 'generarventanilla7']);
-        Route::get('/mensajes-node', [MensajeController::class, 'generarmensajeswpp']);
         Route::get('/whatsapp-bot', [MensajeController::class, 'generarmensajeswppbot']);
 
 });
