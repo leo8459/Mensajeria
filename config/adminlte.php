@@ -359,7 +359,7 @@ return [
                     'icon' => 'fas fa-user',
                 ],
                  [
-                    'text' => 'Mandar Mensajes sadsad 7',
+                    'text' => 'Mandar Mensajes Whatsapp 7',
                     'url' => 'whatsapp-bot',
                     'icon' => 'fas fa-user',
                 ],

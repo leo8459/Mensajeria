@@ -5,6 +5,6 @@
 @endsection
 
 @section('content')
-    @livewire('whatsapp-bot')
+    <livewire:whatsapp-bot :acc="$acc ?? 'wa2'" />
     @include('footer')
 @endsection

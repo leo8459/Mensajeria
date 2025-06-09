@@ -11,46 +11,41 @@ class WhatsappBot extends Component
 {
     use WithFileUploads;
 
-    /* ───── estado UI ───── */
-    public $qr, $estado = 'pending';
+    /* ───── parámetro de cuenta ───── */
+    public string $acc = 'wa1';               // wa1 | wa2 | wa3
 
-    /* ───── mensajes (CRUD) ───── */
-    public $mensajes       = [];     // textos guardados
-    public $nuevoMensaje   = '';
+    /* ───── listas y estados UI ───── */
+    public array  $prelista = [];             // números acumulados por Enter
+    public        $qr, $estado = 'pending';   // conexión WA
+    public        $mensajes = [];             // textos guardados
+    public        $nuevoMensaje = '';
+    public        $packages = [];             // datos /packages
+    public        $scan = '';                 // input CODIGO
+    public        $archivoExcel;              // file
 
-    /* ───── paquetes RDD ───── */
-    public $packages       = [];     // datos de /packages
-    public $scan           = '';     // input CODIGO
-
-    /* ───── Excel masivo ───── */
-    public $archivoExcel;
-
-    /* ───── hooks ───── */
-    public function mount()
+    /* ───── ciclo de vida ───── */
+    public function mount(string $acc = 'wa1')
     {
+        $this->acc = $acc;
         $this->actualizarQR();
         $this->cargarMensajes();
         $this->cargarPackages();
     }
 
-    /* ╔══════════════════════════════════╗
-       ║   SECCIÓN:  mensajes (CRUD)       ║
-       ╚══════════════════════════════════╝ */
+    /* ╔═════════════════ MENSAJES CRUD ═════════════════╗ */
 
     public function cargarMensajes()
     {
-        $res = Http::get(config('services.nodewa.url') . '/mensajes');
-        $this->mensajes = $res->successful() ? $res->json() : [];
+        $r = Http::get(config('services.nodewa.url') . '/mensajes');
+        $this->mensajes = $r->successful() ? $r->json() : [];
     }
 
     public function guardarMensaje()
     {
         if (!trim($this->nuevoMensaje)) return;
-
         Http::post(config('services.nodewa.url') . '/mensajes', [
             'texto' => trim($this->nuevoMensaje),
         ]);
-
         $this->nuevoMensaje = '';
         $this->cargarMensajes();
     }
@@ -61,132 +56,166 @@ class WhatsappBot extends Component
         $this->cargarMensajes();
     }
 
-    /* ╔══════════════════════════════════╗
-       ║   SECCIÓN:  QR / conexión WA      ║
-       ╚══════════════════════════════════╝ */
+    /* ╔═══════════════ QR / CONEXIÓN WA ═══════════════╗ */
 
     public function actualizarQR()
     {
-        $res = Http::get(config('services.nodewa.url') . '/qr');
-        if (!$res->successful()) return;
-
-        $data        = $res->json();
-        $this->estado = $data['status'] ?? 'pending';
-        $this->qr     = $data['status'] === 'qr' ? $data['src'] : null;
+        $r = Http::get(config('services.nodewa.url') . "/{$this->acc}/qr");
+        if (!$r->successful()) return;
+        $d = $r->json();
+        $this->estado = $d['status'] ?? 'pending';
+        $this->qr     = $d['status'] === 'qr' ? $d['src'] : null;
     }
 
     public function desconectar()
     {
-        $ok = Http::post(config('services.nodewa.url') . '/logout')->json('success');
+        $ok = Http::post(config('services.nodewa.url') . "/{$this->acc}/logout")->json('success');
         if ($ok) {
             $this->estado = 'pending';
             $this->qr     = null;
-            $this->cargarMensajes();
         }
     }
 
-    /* ╔══════════════════════════════════╗
-       ║   SECCIÓN:  paquetes RDD         ║
-       ╚══════════════════════════════════╝ */
+    /* ╔═════════════════ PAQUETES RDD ═════════════════╗ */
 
     public function cargarPackages()
     {
-        $r = Http::get(config('services.nodewa.url') . '/packages');
+        $r = Http::get(config('services.nodewa.url') . "/{$this->acc}/packages");
         $this->packages = $r->successful() ? $r->json() : [];
     }
 
-    /* ╔══════════════════════════════════╗
-       ║   SECCIÓN:  envíos WhatsApp      ║
-       ╚══════════════════════════════════╝ */
+    /* ╔═════════════════ PRELISTA  ════════════════════╗ */
 
-    /** Enviar un solo número filtrando por CODIGO */
-  /** Enviar un solo número filtrando por CODIGO */
-public function enviarPorCodigo(string $code = null)
-{
-    /* ── 1. Valor obtenido al presionar Enter ── */
-    if (!is_null($code)) {
-        // viene de wire:keydown.enter → usamos ese valor
-        $this->scan = strtoupper(trim($code));
+    /** Añade el código escaneado a la pre-lista (Enter) */
+    public function agregarAPrelista()
+    {
+        $code        = strtoupper(trim($this->scan));
+        $this->scan  = '';                                   // limpia input
+
+        if (!$code) return;
+
+        $fila = collect($this->packages)
+                ->first(fn ($p) => strtoupper($p['CODIGO'] ?? '') === $code);
+
+        if (!$fila)      return session()->flash('error', '❌ Código no encontrado.');
+        $tel = preg_replace('/\D/', '', $fila['TELEFONO'] ?? '');
+        if (!preg_match('/^\d{7,15}$/', $tel))
+            return session()->flash('error', '❌ Teléfono inválido.');
+
+        $wa = "591{$tel}@c.us";
+        if (!in_array($wa, $this->prelista, true)) {
+            array_unshift($this->prelista, $wa);             // más nuevo arriba
+            session()->flash('mensaje', '➕ Número agregado a prelista.');
+        } else {
+            session()->flash('mensaje', 'ℹ️ Número ya estaba en la prelista.');
+        }
     }
 
-    /* ── 2. Normalizamos y limpiamos la caja ── */
-    $code = strtoupper(trim($this->scan));
-    $this->scan = '';                           // limpia el input en la vista
+    /** Quita un elemento por índice */
+    public function eliminarDePrelista(int $i)
+    {
+        if (isset($this->prelista[$i])) {
+            array_splice($this->prelista, $i, 1);
+        }
+    }
 
-    /* ── 3. Validaciones rápidas ── */
-    if (!$code)               return session()->flash('error', '⚠️ Ingresa un código.');
-    if (!$this->mensajes)     return session()->flash('error', '⚠️ No hay mensajes.');
+    /** Envía todos los números de la pre-lista */
+    public function mandarPrelista()
+    {
+            set_time_limit(0);
 
-    /* ── 4. Buscamos el paquete con ese código ── */
-    $fila = collect($this->packages)
-            ->first(fn ($p) => strtoupper($p['CODIGO'] ?? '') === $code);
+        if (!$this->mensajes)          return session()->flash('error', '⚠️ No hay mensajes.');
+        if (!$this->prelista)          return session()->flash('error', '⚠️ Prelista vacía.');
 
-    if (!$fila)               return session()->flash('error', '❌ Código no encontrado.');
+        foreach ($this->prelista as $idx => $to) {
+            $msg = $this->mensajes[array_rand($this->mensajes)]['texto'] ?? '';
+            Http::post(config('services.nodewa.url') . "/{$this->acc}/send", [
+                'to'      => $to,
+                'message' => $msg,
+            ]);
 
-    /* ── 5. Teléfono y mensaje aleatorio ── */
-    $tel = preg_replace('/\D/', '', $fila['TELEFONO'] ?? '');
-    if (!preg_match('/^\d{7,15}$/', $tel))
-        return session()->flash('error', '❌ Teléfono inválido.');
+            // espera 3 min + 0-2 min aleatorio, salvo en el último
+            if ($idx < count($this->prelista) - 1) {
+                sleep(180 + rand(0, 120));
+            }
+        }
 
-    $mensaje = $this->mensajes[array_rand($this->mensajes)]['texto'] ?? '';
+        $this->prelista = [];
+        session()->flash('mensaje', '🏁 Mensajes enviados a prelista.');
+    }
 
-    /* ── 6. Llamada a la API Node ── */
-    $ok = Http::post(config('services.nodewa.url') . '/send', [
-        'to'      => "591{$tel}@c.us",
-        'message' => $mensaje,
-    ])->json('success');
+    /* ╔═══════════════ ENVÍOS DIRECTOS ═══════════════╗ */
 
-    /* ── 7. Resultado al usuario ── */
-    $ok
-        ? session()->flash('mensaje', "✅ Mensaje enviado a {$tel}.")
-        : session()->flash('error',   '❌ Error al enviar.');
-}
+    public function enviarPorCodigo(string $code = null)
+    {
+        if (!is_null($code)) $this->scan = strtoupper(trim($code));
+        $code       = strtoupper(trim($this->scan));
+        $this->scan = '';
 
+        if (!$code)           return session()->flash('error', '⚠️ Ingresa un código.');
+        if (!$this->mensajes) return session()->flash('error', '⚠️ No hay mensajes.');
 
-    /** Enviar a todos los registros actuales de $packages */
+        $fila = collect($this->packages)
+                ->first(fn ($p) => strtoupper($p['CODIGO'] ?? '') === $code);
+        if (!$fila)           return session()->flash('error', '❌ Código no encontrado.');
+
+        $tel = preg_replace('/\D/', '', $fila['TELEFONO'] ?? '');
+        if (!preg_match('/^\d{7,15}$/', $tel))
+            return session()->flash('error', '❌ Teléfono inválido.');
+
+        $mensaje = $this->mensajes[array_rand($this->mensajes)]['texto'] ?? '';
+
+        $ok = Http::post(config('services.nodewa.url') . "/{$this->acc}/send", [
+                'to'      => "591{$tel}@c.us",
+                'message' => $mensaje,
+             ])->json('success');
+
+        $ok
+            ? session()->flash('mensaje', "✅ Mensaje enviado a {$tel}.")
+            : session()->flash('error',   '❌ Error al enviar.');
+    }
+
     public function enviarTodos()
     {
-        if (!$this->mensajes)  return session()->flash('error', '⚠️ No hay mensajes.');
-        if (!$this->packages)  return session()->flash('error', '⚠️ Tabla vacía.');
+        if (!$this->mensajes) return session()->flash('error', '⚠️ No hay mensajes.');
+        if (!$this->packages) return session()->flash('error', '⚠️ Tabla vacía.');
 
         foreach ($this->packages as $p) {
             $tel = preg_replace('/\D/', '', $p['TELEFONO'] ?? '');
             if (!preg_match('/^\d{7,15}$/', $tel)) continue;
+            $msg = $this->mensajes[array_rand($this->mensajes)]['texto'] ?? '';
 
-            $mensaje = $this->mensajes[array_rand($this->mensajes)]['texto'] ?? '';
-            Http::post(config('services.nodewa.url') . '/send', [
+            Http::post(config('services.nodewa.url') . "/{$this->acc}/send", [
                 'to'      => "591{$tel}@c.us",
-                'message' => $mensaje,
+                'message' => $msg,
             ]);
-            usleep(random_int(60, 200) * 1000);   //   ~0.06-0.2 s entre envíos
+            usleep(random_int(60, 200) * 1000);
         }
-
         session()->flash('mensaje', '🚀 Mensajes enviados a TODOS.');
     }
 
-    /* ╔══════════════════════════════════╗
-       ║   SECCIÓN:  Excel masivo         ║
-       ╚══════════════════════════════════╝ */
+    /* ╔════════════════ EXCEL MASIVO ════════════════╗ */
 
     public function enviarExcel()
     {
         $this->validate(['archivoExcel' => 'required|file|mimes:xlsx,xls|max:2048']);
 
-        $tmpPath   = $this->archivoExcel->store('tmp');
-        $original  = $this->archivoExcel->getClientOriginalName();
+        $tmp  = $this->archivoExcel->store('tmp');
+        $name = $this->archivoExcel->getClientOriginalName();
 
-        $resp = Http::attach('excel', Storage::get($tmpPath), $original)
-                    ->post(config('services.nodewa.url') . '/enviar-excel');
+        $r = Http::attach('excel', Storage::get($tmp), $name)
+                 ->post(config('services.nodewa.url') . '/enviar-excel');
 
-        Storage::delete($tmpPath);
+        Storage::delete($tmp);
         $this->reset('archivoExcel');
 
-        $resp->successful() && $resp->json('success')
+        $r->successful() && $r->json('success')
             ? session()->flash('mensaje', '📤 Envío programado.')
             : session()->flash('error',   '❌ Error al enviar el Excel.');
     }
 
-    /* ───── render ───── */
+    /* ╔════════════════ RENDER ══════════════════════╗ */
+
     public function render()
     {
         return view('livewire.whatsapp-bot');
