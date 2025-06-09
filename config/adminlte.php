@@ -359,8 +359,13 @@ return [
                     'icon' => 'fas fa-user',
                 ],
                  [
-                    'text' => 'Mandar Mensajes Whatsapp 7',
+                    'text' => 'Mensajes Whatsapp Ventanilla 7',
                     'url' => 'whatsapp-bot',
+                    'icon' => 'fas fa-user',
+                ],
+                   [
+                    'text' => 'Mensajes Whatsapp Urbano',
+                    'url' => 'urbanowp',
                     'icon' => 'fas fa-user',
                 ],
                 

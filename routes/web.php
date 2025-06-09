@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleHasPermissionController;
+use App\Http\Controllers\UrbanowpController;
 use App\Http\Controllers\Ventanilla7Controller;
 use Illuminate\Support\Facades\Route;
 
@@ -77,6 +78,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/mensaje', [MensajeController::class, 'generarmensajes']);
     Route::get('/ventanilla7', [Ventanilla7Controller::class, 'generarventanilla7']);
         Route::get('/whatsapp-bot', [MensajeController::class, 'generarmensajeswppbot']);
+        Route::get('/urbanowp', [UrbanowpController::class, 'mensajesurbano']);
 
 });
 
