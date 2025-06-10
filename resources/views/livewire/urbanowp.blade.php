@@ -1,4 +1,4 @@
-{{-- resources/views/livewire/whatsapp-bot.blade.php --}}
+{{-- resources/views/livewire/urbanowp.blade.php --}}
 <div>
 
     {{-- ══ Barra superior: input CODIGO + acción rápida ══ --}}
@@ -7,8 +7,6 @@
                 wire:keydown.enter.prevent="agregarAPrelista"
                 class="form-control w-auto"
                 placeholder="Pega / escanea CODIGO y Enter">
-
-        {{-- <button class="btn btn-success" wire:click="enviarPorCodigo">📤 Enviar por código</button> --}}
     </div>
 
     {{-- ══ Navegación por pestañas (Bootstrap) ══ --}}
@@ -28,13 +26,20 @@
         @endforeach
     </ul>
 
-    {{-- ══ Alertas globales ══ --}}
+    {{-- ══ Alertas por flash (éxito / error) ══ --}}
     <div class="container">
         @if (session()->has('mensaje'))
             <div class="alert alert-success">{{ session('mensaje') }}</div>
         @elseif (session()->has('error'))
             <div class="alert alert-danger">{{ session('error') }}</div>
         @endif
+    </div>
+
+    {{-- ══ Alerta mientras Livewire procesa cualquier acción ══ --}}
+    <div class="container" wire:loading>
+        <div class="alert alert-info text-center mb-3">
+            🚀 Se empezó con el envío de mensajes… No cierres la pestaña.
+        </div>
     </div>
 
     {{-- ══════════ CONTENIDO SEGÚN PESTAÑA ══════════ --}}
@@ -130,28 +135,14 @@
                     </h4>
                     <button class="btn btn-primary btn-lg"
                             wire:click="enviarTodos"
+                            wire:loading.attr="disabled"
                             @disabled(!$packages)>
                         🚀 Iniciar envío masivo
                     </button>
                 </div>
 
                 {{-- Tabla de paquetes --}}
-                @if ($packages)
-                    <div class="table-responsive scroll-y mb-4" style="max-height:300px">
-                        <table class="table table-hover table-sm align-middle mb-0">
-                            <thead class="table-light">
-                                <tr>@foreach (array_keys($packages[0]) as $c)<th>{{ $c }}</th>@endforeach</tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($packages as $p)
-                                    <tr>@foreach ($p as $v)<td>{{ $v }}</td>@endforeach</tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                @else
-                    <p class="text-center text-muted">Sin datos de paquetes.</p>
-                @endif
+                @includeWhen($packages, 'livewire.urbanowp-packages-table')
             </div>
         @endif
 
@@ -194,27 +185,13 @@
 
                 <button class="btn btn-warning w-100 mb-4"
                         wire:click="mandarPrelista"
+                        wire:loading.attr="disabled"
                         @disabled(!count($prelista))>
                     📨 Mandar Prelista
                 </button>
 
                 {{-- Tabla de paquetes --}}
-                @if ($packages)
-                    <div class="table-responsive scroll-y mb-4" style="max-height:300px">
-                        <table class="table table-hover table-sm align-middle mb-0">
-                            <thead class="table-light">
-                                <tr>@foreach (array_keys($packages[0]) as $c)<th>{{ $c }}</th>@endforeach</tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($packages as $p)
-                                    <tr>@foreach ($p as $v)<td>{{ $v }}</td>@endforeach</tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                @else
-                    <p class="text-center text-muted">Sin datos de paquetes.</p>
-                @endif
+                @includeWhen($packages, 'livewire.urbanowp-packages-table')
             </div>
         @endif
 
@@ -229,6 +206,7 @@
 
                 <button class="btn btn-success w-100 mt-3"
                         wire:click="enviarExcel"
+                        wire:loading.attr="disabled"
                         @disabled(!$archivoExcel)>
                     <i class="bi bi-send-check me-1"></i>Enviar Mensajes
                 </button>
@@ -241,8 +219,54 @@
         @endif
     </div>
 
+    {{-- ═════════ REGISTRO DE ENVÍOS ═════════ --}}
+    @if ($envios)
+        <div class="container my-4">
+            <h5 class="mb-3">
+                <i class="bi bi-clipboard-check me-2"></i>Registro de mensajes enviados
+            </h5>
+
+            <div class="table-responsive scroll-y" style="max-height:260px">
+                <table class="table table-sm table-striped align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th style="width:60px">#</th>
+                            <th>Código</th>
+                            <th>Teléfono</th>
+                            <th>Texto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($envios as $i => $e)
+                            <tr>
+                                <td>{{ $i + 1 }}</td>
+                                <td>{{ $e['codigo'] }}</td>
+                                <td>{{ $e['telefono'] }}</td>
+                                <td>{{ $e['texto'] }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    @endif
+
     <footer class="w-100 text-center py-3 small">
         &copy; {{ date('Y') }} – Bots Corp
     </footer>
-
 </div>
+
+{{-- ******* Componentes parciales reutilizados ******* --}}
+{{-- Tabla reutilizable de paquetes --}}
+@once
+    @push('components')
+        @verbatim
+        @if(!function_exists('include_urbanowp_packages_table'))
+        @endverbatim
+            @php
+                function include_urbanowp_packages_table($packages) {
+                    echo view('livewire.urbanowp-packages-table', ['packages' => $packages])->render();
+                }
+            @endphp
+        @endif
+        @endonce
