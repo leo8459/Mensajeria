@@ -5,8 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
-
-class Ventanilla7 extends Component
+class Smssc1 extends Component
 {
     /* datos que la vista usa */
     public array  $paquetes = [];   // filas (CODIGO, TELEFONO…)
@@ -92,8 +91,10 @@ class Ventanilla7 extends Component
         $this->sendTo(array_column($this->paquetes, 'TELEFONO'));
         $this->seleccion = [];
     }
-    public function render()
+     public function render()
     {
-        return view('livewire.ventanilla7');
+        return view('livewire.smssc1');
     }
+
 }
+   

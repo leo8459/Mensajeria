@@ -387,7 +387,11 @@ return [
                     'url' => 'sc1',
                     'icon' => 'fas fa-user',
                 ],
-                 
+                 [
+                    'text' => 'Sms SC1',
+                    'url' => 'sc1sms',
+                    'icon' => 'fas fa-user',
+                ],
                 
             ],
         ],

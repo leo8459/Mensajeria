@@ -81,6 +81,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/whatsapp-bot', [MensajeController::class, 'generarmensajeswppbot']);
         Route::get('/urbanowp', [UrbanowpController::class, 'mensajesurbano']);
         Route::get('/sc1', [MensajeController::class, 'mensajessc1']);
+        Route::get('/sc1sms', [Ventanilla7Controller::class, 'mensajesc1']);
 
 });
 

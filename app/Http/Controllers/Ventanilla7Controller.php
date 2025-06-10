@@ -10,4 +10,8 @@ class Ventanilla7Controller extends Controller
     {
         return view('mensaje.ventanilla7');
     }
+    public function mensajesc1 ()
+    {
+        return view('mensaje.smssc1');
+    }
 }
