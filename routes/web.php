@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EventoController;
 use App\Http\Controllers\MensajeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -79,6 +80,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/ventanilla7', [Ventanilla7Controller::class, 'generarventanilla7']);
         Route::get('/whatsapp-bot', [MensajeController::class, 'generarmensajeswppbot']);
         Route::get('/urbanowp', [UrbanowpController::class, 'mensajesurbano']);
+        Route::get('/evento', [EventoController::class, 'getAdmisiones']);
 
 });
 

@@ -368,6 +368,11 @@ return [
                     'url' => 'urbanowp',
                     'icon' => 'fas fa-user',
                 ],
+                [
+                    'text' => 'eventos',
+                    'url' => 'evento',
+                    'icon' => 'fas fa-user',
+                ],
                 
             ],
         ],
