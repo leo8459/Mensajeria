@@ -80,7 +80,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/ventanilla7', [Ventanilla7Controller::class, 'generarventanilla7']);
         Route::get('/whatsapp-bot', [MensajeController::class, 'generarmensajeswppbot']);
         Route::get('/urbanowp', [UrbanowpController::class, 'mensajesurbano']);
-        Route::get('/evento', [EventoController::class, 'getAdmisiones']);
+        Route::get('/sc1', [MensajeController::class, 'mensajessc1']);
 
 });
 

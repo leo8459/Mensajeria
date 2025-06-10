@@ -368,11 +368,26 @@ return [
                     'url' => 'urbanowp',
                     'icon' => 'fas fa-user',
                 ],
+                
                 [
                     'text' => 'eventos',
                     'url' => 'evento',
                     'icon' => 'fas fa-user',
                 ],
+                
+            ],
+        ],
+         [
+            'text' => 'Mensajeria Santa Cruz',
+            'icon' => 'fas fa-users',
+            // 'can'  => 'users.index',
+            'submenu' => [
+              [
+                    'text' => 'Whatsapp SC1',
+                    'url' => 'sc1',
+                    'icon' => 'fas fa-user',
+                ],
+                 
                 
             ],
         ],

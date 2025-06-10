@@ -14,4 +14,8 @@ class MensajeController extends Controller
     {
         return view('mensaje.whatsapp-bot');
     }
+    public function mensajessc1 ()
+    {
+        return view('mensaje.sc1');
+    }
 }
