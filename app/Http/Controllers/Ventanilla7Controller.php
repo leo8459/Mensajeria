@@ -27,4 +27,20 @@ class Ventanilla7Controller extends Controller
     {
         return view('mensaje.smsoruro');
     }
+    public function mensajetarija ()
+    {
+        return view('mensaje.smstarija');
+    }
+    public function mensajechuquisaca ()
+    {
+        return view('mensaje.smschuquisaca');
+    }
+    public function mensajepando ()
+    {
+        return view('mensaje.smspando');
+    }
+    public function mensajepotosi ()
+    {
+        return view('mensaje.smspotosi');
+    }
 }

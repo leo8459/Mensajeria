@@ -460,8 +460,8 @@ return [
                     'icon' => 'fas fa-user',
                 ],
                  [
-                    'text' => 'Sms SC1',
-                    'url' => 'sc1sms',
+                    'text' => 'Sms Tarija',
+                    'url' => 'smstarija',
                     'icon' => 'fas fa-user',
                 ],
                 
@@ -478,8 +478,8 @@ return [
                     'icon' => 'fas fa-user',
                 ],
                  [
-                    'text' => 'Sms SC1',
-                    'url' => 'sc1sms',
+                    'text' => 'Sms Chuquisaca',
+                    'url' => 'smschuquisaca',
                     'icon' => 'fas fa-user',
                 ],
                 
@@ -496,8 +496,8 @@ return [
                     'icon' => 'fas fa-user',
                 ],
                  [
-                    'text' => 'Sms SC1',
-                    'url' => 'sc1sms',
+                    'text' => 'Sms Pando',
+                    'url' => 'smspando',
                     'icon' => 'fas fa-user',
                 ],
                 
@@ -514,8 +514,8 @@ return [
                     'icon' => 'fas fa-user',
                 ],
                  [
-                    'text' => 'Sms SC1',
-                    'url' => 'sc1sms',
+                    'text' => 'Sms Potosi',
+                    'url' => 'smspotosi',
                     'icon' => 'fas fa-user',
                 ],
                 

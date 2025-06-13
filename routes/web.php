@@ -78,14 +78,17 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/mensaje', [MensajeController::class, 'generarmensajes']);
     Route::get('/ventanilla7', [Ventanilla7Controller::class, 'generarventanilla7']);
-        Route::get('/whatsapp-bot', [MensajeController::class, 'generarmensajeswppbot']);
-        Route::get('/urbanowp', [UrbanowpController::class, 'mensajesurbano']);
-        Route::get('/sc1', [MensajeController::class, 'mensajessc1']);
-        Route::get('/sc1sms', [Ventanilla7Controller::class, 'mensajesc1']);
-        Route::get('/smscb1', [Ventanilla7Controller::class, 'mensajecb1']);
-        Route::get('/smsbeni', [Ventanilla7Controller::class, 'mensajebeni']);
-        Route::get('/smsoruro', [Ventanilla7Controller::class, 'mensajeoruro']);
-
+    Route::get('/whatsapp-bot', [MensajeController::class, 'generarmensajeswppbot']);
+    Route::get('/urbanowp', [UrbanowpController::class, 'mensajesurbano']);
+    Route::get('/sc1', [MensajeController::class, 'mensajessc1']);
+    Route::get('/sc1sms', [Ventanilla7Controller::class, 'mensajesc1']);
+    Route::get('/smscb1', [Ventanilla7Controller::class, 'mensajecb1']);
+    Route::get('/smsbeni', [Ventanilla7Controller::class, 'mensajebeni']);
+    Route::get('/smsoruro', [Ventanilla7Controller::class, 'mensajeoruro']);
+    Route::get('/smstarija', [Ventanilla7Controller::class, 'mensajetarija']);
+    Route::get('/smschuquisaca', [Ventanilla7Controller::class, 'mensajechuquisaca']);
+    Route::get('/smspando', [Ventanilla7Controller::class, 'mensajepando']);
+    Route::get('/smspotosi', [Ventanilla7Controller::class, 'mensajepotosi']);
 });
 
 require __DIR__ . '/auth.php';
