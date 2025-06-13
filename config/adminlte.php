@@ -406,8 +406,8 @@ return [
                     'icon' => 'fas fa-user',
                 ],
                  [
-                    'text' => 'Sms SC1',
-                    'url' => 'sc1sms',
+                    'text' => 'Sms Cochabamba',
+                    'url' => 'smscb1',
                     'icon' => 'fas fa-user',
                 ],
                 
@@ -424,8 +424,8 @@ return [
                     'icon' => 'fas fa-user',
                 ],
                  [
-                    'text' => 'Sms SC1',
-                    'url' => 'sc1sms',
+                    'text' => 'Sms Beni',
+                    'url' => 'smsbeni',
                     'icon' => 'fas fa-user',
                 ],
                 
@@ -442,8 +442,8 @@ return [
                     'icon' => 'fas fa-user',
                 ],
                  [
-                    'text' => 'Sms SC1',
-                    'url' => 'sc1sms',
+                    'text' => 'Sms Oruro',
+                    'url' => 'smsoruro',
                     'icon' => 'fas fa-user',
                 ],
                 

@@ -5,6 +5,6 @@
 @endsection
 
 @section('content')
-    @livewire('smssc1', ['origen' => 'packagesRDD'])
+    @livewire('smsbeni', ['origen' => 'packagesRDD'])
     @include('footer')
 @endsection

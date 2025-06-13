@@ -82,6 +82,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/urbanowp', [UrbanowpController::class, 'mensajesurbano']);
         Route::get('/sc1', [MensajeController::class, 'mensajessc1']);
         Route::get('/sc1sms', [Ventanilla7Controller::class, 'mensajesc1']);
+        Route::get('/smscb1', [Ventanilla7Controller::class, 'mensajecb1']);
+        Route::get('/smsbeni', [Ventanilla7Controller::class, 'mensajebeni']);
+        Route::get('/smsoruro', [Ventanilla7Controller::class, 'mensajeoruro']);
 
 });
 
