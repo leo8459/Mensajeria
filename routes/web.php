@@ -83,6 +83,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/sc1', [MensajeController::class, 'mensajessc1']);
     Route::get('/sc1sms', [Ventanilla7Controller::class, 'mensajesc1']);
     Route::get('/smscb1', [Ventanilla7Controller::class, 'mensajecb1']);
+        Route::get('/smssc2', [Ventanilla7Controller::class, 'mensajesc2']);
+    Route::get('/smscb2', [Ventanilla7Controller::class, 'mensajecb2']);
     Route::get('/smsbeni', [Ventanilla7Controller::class, 'mensajebeni']);
     Route::get('/smsoruro', [Ventanilla7Controller::class, 'mensajeoruro']);
     Route::get('/smstarija', [Ventanilla7Controller::class, 'mensajetarija']);

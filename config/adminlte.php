@@ -369,11 +369,11 @@ return [
                     'icon' => 'fas fa-user',
                 ],
                 
-                [
-                    'text' => 'eventos',
-                    'url' => 'evento',
-                    'icon' => 'fas fa-user',
-                ],
+                // [
+                //     'text' => 'eventos',
+                //     'url' => 'evento',
+                //     'icon' => 'fas fa-user',
+                // ],
                 
             ],
         ],
@@ -392,6 +392,11 @@ return [
                     'url' => 'sc1sms',
                     'icon' => 'fas fa-user',
                 ],
+                [
+                    'text' => 'Sms Santa Cruz 2',
+                    'url' => 'smssc2',
+                    'icon' => 'fas fa-user',
+                ],
                 
             ],
         ],
@@ -408,6 +413,11 @@ return [
                  [
                     'text' => 'Sms Cochabamba',
                     'url' => 'smscb1',
+                    'icon' => 'fas fa-user',
+                ],
+                 [
+                    'text' => 'Sms Cochabamba',
+                    'url' => 'smscb2',
                     'icon' => 'fas fa-user',
                 ],
                 

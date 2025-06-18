@@ -18,6 +18,14 @@ class Ventanilla7Controller extends Controller
     {
         return view('mensaje.smscb1');
     }
+     public function mensajesc2 ()
+    {
+        return view('mensaje.smssc2');
+    }
+    public function mensajecb2 ()
+    {
+        return view('mensaje.smscb2');
+    }
     
     public function mensajebeni ()
     {
