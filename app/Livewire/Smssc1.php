@@ -19,7 +19,7 @@ class Smssc1 extends Component
     {
         $this->origen = $origen;
 
-        $url = "http://172.65.10.52/api/{$this->origen}";
+        $url = "http://172.65.10.52:8000/api/{$this->origen}";
 
         try {
             $this->paquetes = collect(
