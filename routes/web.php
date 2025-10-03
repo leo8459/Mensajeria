@@ -84,6 +84,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/urbano3', [UrbanowpController::class, 'mensajesurbano3']);
     Route::get('/urbano4', [UrbanowpController::class, 'mensajesurbano4']);
     Route::get('/urbano5', [UrbanowpController::class, 'mensajesurbano5']);
+        Route::get('/dnd1', [UrbanowpController::class, 'mensajesdnd1']);
+    Route::get('/ventanilla71', [UrbanowpController::class, 'mensajesventanilla71']);
+    Route::get('/ventanilla72', [UrbanowpController::class, 'mensajesventanilla72']);
+
     Route::get('/sc1', [MensajeController::class, 'mensajessc1']);
     Route::get('/sc1sms', [Ventanilla7Controller::class, 'mensajesc1']);
     Route::get('/smscb1', [Ventanilla7Controller::class, 'mensajecb1']);

@@ -388,6 +388,21 @@ return [
                     'url' => 'urbano5',
                     'icon' => 'fas fa-user',
                 ],
+                    [
+                    'text' => 'Mensajes DND 1',
+                    'url' => 'dnd1',
+                    'icon' => 'fas fa-user',
+                ],
+                    [
+                    'text' => 'Mensajes Ventanilla 7 1',
+                    'url' => 'ventanilla71',
+                    'icon' => 'fas fa-user',
+                ],
+                    [
+                    'text' => 'Mensajes Ventanilla 7 2',
+                    'url' => 'ventanilla72',
+                    'icon' => 'fas fa-user',
+                ],
                 
                 // [
                 //     'text' => 'eventos',

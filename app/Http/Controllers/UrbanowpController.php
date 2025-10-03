@@ -26,4 +26,16 @@ class UrbanowpController extends Controller
     {
         return view('mensaje.urbano5');
     }
+    public function mensajesdnd1 ()
+    {
+        return view('mensaje.dnd1');
+    }
+    public function mensajesventanilla71 ()
+    {
+        return view('mensaje.ventanilla71');
+    }
+    public function mensajesventanilla72 ()
+    {
+        return view('mensaje.ventanilla72');
+    }
 }
