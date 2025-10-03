@@ -348,70 +348,47 @@ return [
             'icon' => 'fas fa-users',
             // 'can'  => 'users.index',
             'submenu' => [
-                // [
-                //     'text' => 'Mandar Mensajes Urbano',
-                //     'url' => 'mensaje',
-                //     'icon' => 'fas fa-user',
-                // ],
-                //  [
-                //     'text' => 'Mandar Mensajes Ventanilla 7',
-                //     'url' => 'ventanilla7',
-                //     'icon' => 'fas fa-user',
-                // ],
-                //  [
-                //     'text' => 'Mensajes Whatsapp Ventanilla 7',
-                //     'url' => 'whatsapp-bot',
-                //     'icon' => 'fas fa-user',
-                // ],
+
+                // --- URBANO ---
                 [
-                    'text' => 'Mensajes Urbano DD 1',
-                    'url'  => 'urbanowp',
+                    'text' => 'Urbano',
                     'icon' => 'fab fa-whatsapp',
-                ],
-                [
-                    'text' => 'Mensajes Urbano DD 2',
-                    'url'  => 'urbano2',
-                    'icon' => 'fab fa-whatsapp',
-                ],
-                [
-                    'text' => 'Mensajes Urbano DD 3',
-                    'url'  => 'urbano3',
-                    'icon' => 'fab fa-whatsapp',
-                ],
-                [
-                    'text' => 'Mensajes Urbano DD 4',
-                    'url'  => 'urbano4',
-                    'icon' => 'fab fa-whatsapp',
-                ],
-                [
-                    'text' => 'Mensajes Urbano DD 5',
-                    'url'  => 'urbano5',
-                    'icon' => 'fab fa-whatsapp',
-                ],
-                [
-                    'text' => 'Mensajes DND 1',
-                    'url'  => 'dnd1',
-                    'icon' => 'fab fa-whatsapp',
-                ],
-                [
-                    'text' => 'Mensajes Ventanilla 7 1',
-                    'url'  => 'ventanilla71',
-                    'icon' => 'fab fa-whatsapp',
-                ],
-                [
-                    'text' => 'Mensajes Ventanilla 7 2',
-                    'url'  => 'ventanilla72',
-                    'icon' => 'fab fa-whatsapp',
+                    'submenu' => [
+                        ['text' => 'Mensajes Urbano DD 1', 'url' => 'urbanowp', 'icon' => 'fab fa-whatsapp'],
+                        ['text' => 'Mensajes Urbano DD 2', 'url' => 'urbano2',  'icon' => 'fab fa-whatsapp'],
+                        ['text' => 'Mensajes Urbano DD 3', 'url' => 'urbano3',  'icon' => 'fab fa-whatsapp'],
+                        ['text' => 'Mensajes Urbano DD 4', 'url' => 'urbano4',  'icon' => 'fab fa-whatsapp'],
+                        ['text' => 'Mensajes Urbano DD 5', 'url' => 'urbano5',  'icon' => 'fab fa-whatsapp'],
+                    ],
                 ],
 
-                // [
-                //     'text' => 'eventos',
-                //     'url' => 'evento',
-                //     'icon' => 'fas fa-user',
-                // ],
+                // --- DND ---
+                [
+                    'text' => 'DND',
+                    'icon' => 'fab fa-whatsapp',
+                    'submenu' => [
+                        ['text' => 'Mensajes DND 1', 'url' => 'dnd1', 'icon' => 'fab fa-whatsapp'],
+                    ],
+                ],
 
+                // --- VENTANILLA 7 ---
+                [
+                    'text' => 'Ventanilla 7',
+                    'icon' => 'fab fa-whatsapp',
+                    'submenu' => [
+                        ['text' => 'Mensajes Ventanilla 7 1', 'url' => 'ventanilla71', 'icon' => 'fab fa-whatsapp'],
+                        ['text' => 'Mensajes Ventanilla 7 2', 'url' => 'ventanilla72', 'icon' => 'fab fa-whatsapp'],
+                    ],
+                ],
+
+                // Puedes reactivar estos si los necesitas:
+                // [ 'text' => 'Mandar Mensajes Urbano', 'url' => 'mensaje',     'icon' => 'fab fa-whatsapp' ],
+                // [ 'text' => 'Mandar Mensajes Ventanilla 7', 'url' => 'ventanilla7', 'icon' => 'fab fa-whatsapp' ],
+                // [ 'text' => 'Mensajes Whatsapp Ventanilla 7', 'url' => 'whatsapp-bot', 'icon' => 'fab fa-whatsapp' ],
+                // [ 'text' => 'eventos', 'url' => 'evento', 'icon' => 'fas fa-user' ],
             ],
         ],
+
         [
             'text' => 'Mensajeria Santa Cruz',
             'icon' => 'fas fa-users',
