@@ -348,24 +348,44 @@ return [
             'icon' => 'fas fa-users',
             // 'can'  => 'users.index',
             'submenu' => [
-                [
-                    'text' => 'Mandar Mensajes Urbano',
-                    'url' => 'mensaje',
-                    'icon' => 'fas fa-user',
-                ],
-                 [
-                    'text' => 'Mandar Mensajes Ventanilla 7',
-                    'url' => 'ventanilla7',
-                    'icon' => 'fas fa-user',
-                ],
-                 [
-                    'text' => 'Mensajes Whatsapp Ventanilla 7',
-                    'url' => 'whatsapp-bot',
-                    'icon' => 'fas fa-user',
-                ],
+                // [
+                //     'text' => 'Mandar Mensajes Urbano',
+                //     'url' => 'mensaje',
+                //     'icon' => 'fas fa-user',
+                // ],
+                //  [
+                //     'text' => 'Mandar Mensajes Ventanilla 7',
+                //     'url' => 'ventanilla7',
+                //     'icon' => 'fas fa-user',
+                // ],
+                //  [
+                //     'text' => 'Mensajes Whatsapp Ventanilla 7',
+                //     'url' => 'whatsapp-bot',
+                //     'icon' => 'fas fa-user',
+                // ],
                    [
-                    'text' => 'Mensajes Whatsapp Urbano',
+                    'text' => 'Mensajes Urbano DD 1',
                     'url' => 'urbanowp',
+                    'icon' => 'fas fa-user',
+                ],
+                  [
+                    'text' => 'Mensajes Urbano DD 2',
+                    'url' => 'urbano2',
+                    'icon' => 'fas fa-user',
+                ],
+                    [
+                    'text' => 'Mensajes Urbano DD 3',
+                    'url' => 'urbano3',
+                    'icon' => 'fas fa-user',
+                ],
+                    [
+                    'text' => 'Mensajes Urbano DD 4',
+                    'url' => 'urbano4',
+                    'icon' => 'fas fa-user',
+                ],
+                    [
+                    'text' => 'Mensajes Urbano DD 5',
+                    'url' => 'urbano5',
                     'icon' => 'fas fa-user',
                 ],
                 
