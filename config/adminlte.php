@@ -363,66 +363,66 @@ return [
                 //     'url' => 'whatsapp-bot',
                 //     'icon' => 'fas fa-user',
                 // ],
-                   [
+                [
                     'text' => 'Mensajes Urbano DD 1',
-                    'url' => 'urbanowp',
-                    'icon' => 'fas fa-user',
+                    'url'  => 'urbanowp',
+                    'icon' => 'fab fa-whatsapp',
                 ],
-                  [
+                [
                     'text' => 'Mensajes Urbano DD 2',
-                    'url' => 'urbano2',
-                    'icon' => 'fas fa-user',
+                    'url'  => 'urbano2',
+                    'icon' => 'fab fa-whatsapp',
                 ],
-                    [
+                [
                     'text' => 'Mensajes Urbano DD 3',
-                    'url' => 'urbano3',
-                    'icon' => 'fas fa-user',
+                    'url'  => 'urbano3',
+                    'icon' => 'fab fa-whatsapp',
                 ],
-                    [
+                [
                     'text' => 'Mensajes Urbano DD 4',
-                    'url' => 'urbano4',
-                    'icon' => 'fas fa-user',
+                    'url'  => 'urbano4',
+                    'icon' => 'fab fa-whatsapp',
                 ],
-                    [
+                [
                     'text' => 'Mensajes Urbano DD 5',
-                    'url' => 'urbano5',
-                    'icon' => 'fas fa-user',
+                    'url'  => 'urbano5',
+                    'icon' => 'fab fa-whatsapp',
                 ],
-                    [
+                [
                     'text' => 'Mensajes DND 1',
-                    'url' => 'dnd1',
-                    'icon' => 'fas fa-user',
+                    'url'  => 'dnd1',
+                    'icon' => 'fab fa-whatsapp',
                 ],
-                    [
+                [
                     'text' => 'Mensajes Ventanilla 7 1',
-                    'url' => 'ventanilla71',
-                    'icon' => 'fas fa-user',
+                    'url'  => 'ventanilla71',
+                    'icon' => 'fab fa-whatsapp',
                 ],
-                    [
+                [
                     'text' => 'Mensajes Ventanilla 7 2',
-                    'url' => 'ventanilla72',
-                    'icon' => 'fas fa-user',
+                    'url'  => 'ventanilla72',
+                    'icon' => 'fab fa-whatsapp',
                 ],
-                
+
                 // [
                 //     'text' => 'eventos',
                 //     'url' => 'evento',
                 //     'icon' => 'fas fa-user',
                 // ],
-                
+
             ],
         ],
-         [
+        [
             'text' => 'Mensajeria Santa Cruz',
             'icon' => 'fas fa-users',
             // 'can'  => 'users.index',
             'submenu' => [
-              [
+                [
                     'text' => 'Whatsapp SC1',
                     'url' => 'sc1',
                     'icon' => 'fas fa-user',
                 ],
-                 [
+                [
                     'text' => 'Sms SC1',
                     'url' => 'sc1sms',
                     'icon' => 'fas fa-user',
@@ -432,138 +432,138 @@ return [
                     'url' => 'smssc2',
                     'icon' => 'fas fa-user',
                 ],
-                
+
             ],
         ],
-         [
+        [
             'text' => 'Mensajeria Cochabamba',
             'icon' => 'fas fa-users',
             // 'can'  => 'users.index',
             'submenu' => [
-              [
+                [
                     'text' => 'Whatsapp SC1',
                     'url' => 'sc1',
                     'icon' => 'fas fa-user',
                 ],
-                 [
+                [
                     'text' => 'Sms Cochabamba',
                     'url' => 'smscb1',
                     'icon' => 'fas fa-user',
                 ],
-                 [
+                [
                     'text' => 'Sms Cochabamba',
                     'url' => 'smscb2',
                     'icon' => 'fas fa-user',
                 ],
-                
+
             ],
         ],
-         [
+        [
             'text' => 'Mensajeria Beni',
             'icon' => 'fas fa-users',
             // 'can'  => 'users.index',
             'submenu' => [
-              [
+                [
                     'text' => 'Whatsapp SC1',
                     'url' => 'sc1',
                     'icon' => 'fas fa-user',
                 ],
-                 [
+                [
                     'text' => 'Sms Beni',
                     'url' => 'smsbeni',
                     'icon' => 'fas fa-user',
                 ],
-                
+
             ],
         ],
-         [
+        [
             'text' => 'Mensajeria Oruro',
             'icon' => 'fas fa-users',
             // 'can'  => 'users.index',
             'submenu' => [
-              [
+                [
                     'text' => 'Whatsapp SC1',
                     'url' => 'sc1',
                     'icon' => 'fas fa-user',
                 ],
-                 [
+                [
                     'text' => 'Sms Oruro',
                     'url' => 'smsoruro',
                     'icon' => 'fas fa-user',
                 ],
-                
+
             ],
         ],
-         [
+        [
             'text' => 'Mensajeria Tarija',
             'icon' => 'fas fa-users',
             // 'can'  => 'users.index',
             'submenu' => [
-              [
+                [
                     'text' => 'Whatsapp SC1',
                     'url' => 'sc1',
                     'icon' => 'fas fa-user',
                 ],
-                 [
+                [
                     'text' => 'Sms Tarija',
                     'url' => 'smstarija',
                     'icon' => 'fas fa-user',
                 ],
-                
+
             ],
         ],
-         [
+        [
             'text' => 'Mensajeria Chuquisaca',
             'icon' => 'fas fa-users',
             // 'can'  => 'users.index',
             'submenu' => [
-              [
+                [
                     'text' => 'Whatsapp SC1',
                     'url' => 'sc1',
                     'icon' => 'fas fa-user',
                 ],
-                 [
+                [
                     'text' => 'Sms Chuquisaca',
                     'url' => 'smschuquisaca',
                     'icon' => 'fas fa-user',
                 ],
-                
+
             ],
         ],
-         [
+        [
             'text' => 'Mensajeria Pando',
             'icon' => 'fas fa-users',
             // 'can'  => 'users.index',
             'submenu' => [
-              [
+                [
                     'text' => 'Whatsapp SC1',
                     'url' => 'sc1',
                     'icon' => 'fas fa-user',
                 ],
-                 [
+                [
                     'text' => 'Sms Pando',
                     'url' => 'smspando',
                     'icon' => 'fas fa-user',
                 ],
-                
+
             ],
         ],
-         [
+        [
             'text' => 'Mensajeria Potosi',
             'icon' => 'fas fa-users',
             // 'can'  => 'users.index',
             'submenu' => [
-              [
+                [
                     'text' => 'Whatsapp SC1',
                     'url' => 'sc1',
                     'icon' => 'fas fa-user',
                 ],
-                 [
+                [
                     'text' => 'Sms Potosi',
                     'url' => 'smspotosi',
                     'icon' => 'fas fa-user',
                 ],
-                
+
             ],
         ],
         [
